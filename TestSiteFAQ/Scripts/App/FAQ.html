@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html ng-app="App">
+<head>
+    <script src="../LIBJS/angular.js"></script>
+    <script src="../LIBJS/jquery-2.1.1.min.js"></script>
+    <script src="../LIBJS/bootstrap.min.js"></script>
+    <link href="../LIBJS/bootstrap.min.css" rel="stylesheet" />
+    <script src="FAQController.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="page-header text-center text-danger"><h2>AngularJS SPA CRUD Web-API Bootstrap</h2></div>
+    <div class="row" ng-controller="FAQController">
+        <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
+        <div class="col-sm-4 col-sm-offset-1" ng-show="visFaqs">
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>Heading</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="faq in faqs">
+                    <tr>
+                        <td>{{faq.Heading}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-primary" ng-click="visRegistrerSkjema()" ng-show="regKnapp">Registrer</button>
+        </div>
+
+    </div>
+</body>
+</html>
