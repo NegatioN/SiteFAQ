@@ -9,6 +9,7 @@
     <title></title>
 </head>
 <body>
+    <!--TODO make "go back"-button in jscript that saves all previous states?-->
     <div class="page-header text-center text-danger"><h2>AngularJS SPA CRUD Web-API Bootstrap</h2></div>
     <div class="row" ng-controller="FAQController">
         <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
@@ -19,13 +20,54 @@
                         <th>Heading</th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="faq in faqs">
+                <tbody ng-repeat="faq in faqs" ng-click="showSingleFAQ(faq)">
                     <tr>
+                        <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
+                        <!--Get images from REST API?-->
                         <td>{{faq.Heading}}</td>
+                        <!--Display a view with complete info about this FAQ, and a go-back button-->
+
+
                     </tr>
                 </tbody>
             </table>
-            <button class="btn btn-primary" ng-click="visRegistrerSkjema()" ng-show="regKnapp">Registrer</button>
+            <button class="btn btn-primary" ng-click="visSendSpm()" ng-show="regKnapp">Send inn spørsmål.</button>
+        </div>
+
+
+
+        <div class="col-sm-4 col-sm-offset-1" ng-show="showASingleFAQ">
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>{{currentHeading}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{currentDescription}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="col-sm-4 col-sm-offset-2" ng-show="sendSpm">
+            <form name="skjema">
+                <div class="form-group">
+                    <label>Epost:</label>
+                    <input class="form-control" name="epost" ng-model="epost" ng-required="true" ng-pattern="/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/" />
+                    <p class="label label-info" ng-show="skjema.epost.$invalid && skjema.fornavn.$dirty">Skriv inn en lovlig epost-adresse.</p>
+                </div>
+                <div class="form-group">
+                    <label>Spørsmål:</label>
+                    <input class="form-control" name="sporsmal" ng-model="sporsmal" ng-required="true" ng-pattern="/^[a-zøæåA-ZØÆÅ. \-]{2,30}$/" />
+                    <p class="label label-info" ng-show="skjema.etternavn.$invalid && skjema.etternavn.$dirty">Skriv inn et lovlig etternavn</p>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="sendQuestion()" ng-disabled="skjema.$invalid" ng-show="registrering">Send inn spørsmål</button>
+                </div>
+            </form>
         </div>
 
     </div>
