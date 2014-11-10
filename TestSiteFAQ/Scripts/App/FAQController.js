@@ -8,9 +8,14 @@ App.controller("FAQController", function ($scope, $http) {
     console.log("FAQ-controller.js found");
 
     function getAllFaqs() {
-        //define bools for single-page applcation
+        //define bool-states for single-page applcation
         $scope.showAFAQ = false;
         $scope.registrering = false;
+        $scope.visFaqs = true;
+        $scope.regKnapp = true;
+        $scope.laster = true;
+        $scope.registrering = false;
+        $scope.sendSpm = false;
 
 
         $http.get(url).
@@ -22,31 +27,34 @@ App.controller("FAQController", function ($scope, $http) {
               console.log(status + data);
           });
     };
-    console.log("Much console");
-    $scope.visFaqs = true;
-    $scope.regKnapp = true;
-    $scope.laster = true;
+
+    //gets called on Controller-start
     getAllFaqs();
 
 
     $scope.showSingleFAQ = function(FAQ) {
-        //define bools for single-page applcation
-        $scope.showAFAQ = true;
+        //define bool-states for single-page applcation
         $scope.visFaqs = false;
         $scope.registrering = false;
+        $scope.showAFAQ = true;
 
         console.log("In ShowSingleFAQ");
 
-        $scope.currentHeading = FAQ.Heading;
-        $scope.currentDescription = FAQ.Description;
+        var currentFAQ = {
+            Heading: FAQ.Heading,
+            Description: FAQ.Description
+        }
+        $scope.current = currentFAQ;
 
-        console.log($scope.currentHeading);
-        console.log($scope.currentDescription);
+        console.log($scope.current.Heading);
+        console.log($scope.current.Description);
+
     };
 
     $scope.visSendSpm = function () {
         $scope.epost = "";
         $scope.sporsmal = "";
+
         // for å unngå at noen av feltene gir "falske" feilmeldinger 
         $scope.skjema.$setPristine();
         $scope.regKnapp = false; // dette er knappen fra listen av kunder til reg-skjema
@@ -57,6 +65,7 @@ App.controller("FAQController", function ($scope, $http) {
         console.log("In showSendSpm");
     };
 
+    //gets called on button-press in showQuestion-form
     $scope.sendQuestion = function () {
         // lag et object for overføring til server via post
         console.log("Inne i registerKunde");
@@ -66,6 +75,11 @@ App.controller("FAQController", function ($scope, $http) {
         };
         console.log(question.epost);
         console.log(question.sporsmal);
+    };
+
+    $scope.goBack = function () {
+        console.log("goBack called");
+        getAllFaqs();
     };
 
 });
