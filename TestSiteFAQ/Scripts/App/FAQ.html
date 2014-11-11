@@ -38,8 +38,8 @@
 
 
         <div class="col-sm-4 col-sm-offset-1" ng-show="showRecipt">
-
-            <p class ="label label-info">Takk for ditt spørsmål.
+            <h2>Takk for ditt spørsmål.</h2>
+            <p class ="lead">
                 Svar vil bli sendt til: {{newQuestion.Email}}.</p>
 
             <button class="btn btn-primary" ng-click="goBack()" ng-show="goBack">Gå Tilbake</button>
@@ -68,12 +68,12 @@
                     <div class="form-group">
                         <label>Epost:</label>
                         <input class="form-control" name="epost" ng-model="epost" ng-required="true" ng-pattern="/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/" />
-                        <p class="label label-info" ng-show="skjema.epost.$invalid && skjema.fornavn.$dirty">Skriv inn en lovlig epost-adresse.</p>
+                        <p class="label label-info" ng-show="skjema.epost.$invalid && skjema.epost.$dirty">Skriv inn en lovlig epost-adresse.</p>
                     </div>
                     <div class="form-group">
                         <label>Spørsmål:</label>
-                        <input class="form-control" name="sporsmal" ng-model="sporsmal" ng-required="true" ng-pattern="/^[a-zøæåA-ZØÆÅ. \-]{2,30}$/" />
-                        <p class="label label-info" ng-show="skjema.etternavn.$invalid && skjema.etternavn.$dirty">Skriv inn et lovlig etternavn</p>
+                        <input class="form-control" name="sporsmal" ng-model="sporsmal" ng-required="true" ng-pattern="/^[a-zøæåA-ZØÆÅ. \-]{10,}$/" />
+                        <p class="label label-info" ng-show="skjema.sporsmal.$invalid && skjema.sporsmal.$dirty">Skriv inn en melding på minst 10 tegn.</p>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary" ng-click="sendQuestion()" ng-disabled="skjema.$invalid" ng-show="registrering">Send inn spørsmål</button>
