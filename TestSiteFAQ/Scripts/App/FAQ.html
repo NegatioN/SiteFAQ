@@ -20,16 +20,18 @@
                         <th>Heading</th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="faq in faqs" ng-click="showSingleFAQ(faq)">
-                    <tr>
-                        <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
-                        <!--Get images from REST API?-->
-                        <td>{{faq.Heading}}</td>
-                        <!--Display a view with complete info about this FAQ, and a go-back button-->
+                    <tbody ng-repeat="faq in faqs">
+                        <tr>
+                            <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
+                            <!--Get images from REST API?-->
+                            <td>
+                                <a ng-href="" ng-click="showSingleFAQ(faq)">{{faq.Heading}}</a>
+                            </a></td>
+                            <!--make these text-thingies look like clickable links.-->
 
 
-                    </tr>
-                </tbody>
+                        </tr>
+                    </tbody>
             </table>
             <button class="btn btn-primary" ng-click="visSendSpm()" ng-show="regKnapp">Send inn spørsmål.</button>
         </div>
