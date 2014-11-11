@@ -3,6 +3,8 @@ var App = angular.module("App", []);
 
 App.controller("FAQController", function ($scope, $http) {
 
+    //TODO make loading-thing be a spinning load-image?
+
     var url = '/api/FAQ/';
 
     console.log("FAQ-controller.js found");
@@ -16,6 +18,7 @@ App.controller("FAQController", function ($scope, $http) {
         $scope.laster = true;
         $scope.registrering = false;
         $scope.sendSpm = false;
+        $scope.showRecipt = false;
 
 
         $http.get(url).
@@ -73,10 +76,17 @@ App.controller("FAQController", function ($scope, $http) {
             epost: $scope.epost,
             sporsmal: $scope.sporsmal
         };
+        $scope.newQuestion = question;
         console.log(question.epost);
         console.log(question.sporsmal);
+
+        //change state-bools
+        $scope.showRecipt = true;
+        $scope.sendSpm = false;
+        $scope.registrering = false;
     };
 
+    //method called for goBack-button
     $scope.goBack = function () {
         console.log("goBack called");
         getAllFaqs();
