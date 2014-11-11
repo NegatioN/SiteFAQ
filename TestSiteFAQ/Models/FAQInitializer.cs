@@ -13,8 +13,15 @@ namespace TestSiteFAQ.Models
         {
             FAQContext db = new FAQContext();
 
-            if (db.Faqs.ToList().Count() == 0)
+            try
+            {
+                if (db.Faqs.ToList().Count() == 0)
+                    Seed(db);
+            }
+            catch (Exception e)
+            {
                 Seed(db);
+            }
         }
         protected override void Seed(FAQContext context)
         {

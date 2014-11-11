@@ -102,4 +102,9 @@ App.controller("FAQController", function ($scope, $http) {
         getAllFaqs();
     };
 
+
+    $scope.toggleDetail = function ($index) {
+        $scope.activePosition = $scope.activePosition == $index ? -1 : $index;
+    };
+
 });

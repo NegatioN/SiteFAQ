@@ -4,12 +4,12 @@
     <script src="../LIBJS/angular.js"></script>
     <script src="../LIBJS/jquery-2.1.1.min.js"></script>
     <script src="../LIBJS/bootstrap.min.js"></script>
-    <link href="../LIBJS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <script src="FAQController.js"></script>
+    <link href="../Content/Site.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
 <body>
-    <!--TODO make "go back"-button in jscript that saves all previous states?-->
     <div class="page-header text-center text-danger"><h2>AngularJS SPA CRUD Web-API Bootstrap</h2></div>
     <div class="row" ng-controller="FAQController">
         <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
@@ -17,21 +17,23 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                     <tr>
-                        <th>Heading</th>
+                        <th>Ofte Spurte Spørsmål: </th>
                     </tr>
                 </thead>
-                    <tbody ng-repeat="faq in faqs">
-                        <tr>
-                            <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
-                            <!--Get images from REST API?-->
-                            <td>
-                                <a ng-href="" ng-click="showSingleFAQ(faq)">{{faq.Heading}}</a>
-                            </a></td>
-                            <!--make these text-thingies look like clickable links.-->
+                <tbody ng-repeat="faq in faqs">
+                    <tr class="main-row" ng-click="toggleDetail($index)">
+                        <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
+                        <!--Get images from REST API?-->
+                        <!-- ng-click="showSingleFAQ(faq)" on a's-->
+                        <td>
+                            <p class="text-muted">{{faq.Heading}}</p>
+                        </td>
+
+                    <tr class="extra-row" ng-show="activePosition == $index"><td>{{faq.Description}}</td></tr>
 
 
-                        </tr>
-                    </tbody>
+                    </tr>
+                </tbody>
             </table>
             <button class="btn btn-primary" ng-click="visSendSpm()" ng-show="regKnapp">Send inn spørsmål.</button>
         </div>

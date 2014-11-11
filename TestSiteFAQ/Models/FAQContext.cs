@@ -32,15 +32,18 @@ namespace TestSiteFAQ.Models
         }
 
         public Boolean addPendingFAQ(PendingFAQ faq){
+            bool result = pendingFaqs.Add(faq) != null;
+            SaveChanges();
 
-
-            return pendingFaqs.Add(faq) != null;
+            return result;
 
         }
 
-        public void addFAQ(FAQ faq)
+        public Boolean addFAQ(FAQ faq)
         {
-            Faqs.Add(faq);
+            bool result = Faqs.Add(faq) != null;
+            SaveChanges();
+            return result;
         }
         
     }
