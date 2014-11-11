@@ -54,10 +54,15 @@ namespace TestSiteFAQ.Controllers
 
         public HttpResponseMessage Post(PendingFAQ faq)
         {
+            Debug.WriteLine("Email: " + faq.Email + "\nDescription: " + faq.Description);
+
+
             if (ModelState.IsValid)
             {
                 FAQContext db = new FAQContext();
                 Boolean OK = db.addPendingFAQ(faq);
+
+                Debug.WriteLine("Faq added to DB == " + OK);
 
                 if (OK)
                 {

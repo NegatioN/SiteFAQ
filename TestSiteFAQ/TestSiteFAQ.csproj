@@ -98,6 +98,7 @@
     <Content Include="Scripts\App\FAQ.html" />
     <Content Include="Scripts\App\FAQController.js" />
     <Content Include="Scripts\LIBJS\bootstrap.js" />
+    <Content Include="Scripts\LIBJS\bootstrap.min.css" />
     <Content Include="Scripts\LIBJS\bootstrap.min.js" />
     <Content Include="Scripts\LIBJS\jquery-2.1.1.js" />
     <Content Include="Scripts\LIBJS\jquery-2.1.1.min.js" />

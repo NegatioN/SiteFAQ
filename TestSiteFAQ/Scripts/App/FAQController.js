@@ -73,15 +73,25 @@ App.controller("FAQController", function ($scope, $http) {
         // lag et object for overføring til server via post
         console.log("Inne i registerKunde");
         var question = {
-            epost: $scope.epost,
-            sporsmal: $scope.sporsmal
+            Email: $scope.epost,
+            Description: $scope.sporsmal
         };
         $scope.newQuestion = question;
-        console.log(question.epost);
-        console.log(question.sporsmal);
+        console.log(question.Email);
+        console.log(question.Description);
+
+        //HTTP POST
+        $http.post(url, question).
+         success(function (data) {
+             console.log("Lagre kunder OK!")
+             $scope.showRecipt = true;
+             //sett noe laster? som i sending
+        }).
+         error(function (data, status) {
+            console.log(status + data);
+  });
 
         //change state-bools
-        $scope.showRecipt = true;
         $scope.sendSpm = false;
         $scope.registrering = false;
     };

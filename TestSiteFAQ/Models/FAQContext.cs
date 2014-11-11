@@ -32,6 +32,8 @@ namespace TestSiteFAQ.Models
         }
 
         public Boolean addPendingFAQ(PendingFAQ faq){
+
+
             return pendingFaqs.Add(faq) != null;
 
         }
