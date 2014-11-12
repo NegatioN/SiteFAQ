@@ -34,7 +34,7 @@ App.controller("FAQController", function ($scope, $http) {
     //gets called on Controller-start
     getAllFaqs();
 
-
+    /*
     $scope.showSingleFAQ = function(FAQ) {
         //define bool-states for single-page applcation
         $scope.visFaqs = false;
@@ -53,6 +53,7 @@ App.controller("FAQController", function ($scope, $http) {
         console.log($scope.current.Description);
 
     };
+    */
 
     $scope.visSendSpm = function () {
         $scope.epost = "";
@@ -102,7 +103,7 @@ App.controller("FAQController", function ($scope, $http) {
         getAllFaqs();
     };
 
-
+    //toggles descriptions on each FAQ
     $scope.toggleDetail = function ($index) {
         $scope.activePosition = $scope.activePosition == $index ? -1 : $index;
     };

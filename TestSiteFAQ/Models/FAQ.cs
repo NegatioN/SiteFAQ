@@ -7,7 +7,7 @@ namespace TestSiteFAQ.Models
 {
     public class FAQ
     {
-        public static String[] Categories = {"Payment", "Site", "About us"};
+        public static String[] Categories = {"Betaling", "Siden", "Om oss", "Handel"};
 
         public String Heading { get; set; }
         public String Description { get; set; }

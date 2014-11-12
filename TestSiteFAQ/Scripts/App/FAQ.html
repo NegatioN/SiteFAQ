@@ -62,29 +62,26 @@
         <div class="page-header text-center text-danger"><h2>Ofte Spurte Spørsmål</h2></div>
         <div class="row" ng-controller="FAQController">
             <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
+
             <div class="col-sm-10 col-sm-offset-1" ng-show="visFaqs">
-                <table class="table table-bordered table-condensed">
+                <table class="table table-bordered" >
                     <thead>
                         <tr>
                             <th>Ofte Spurte Spørsmål: </th>
                         </tr>
                     </thead>
-                    <tbody ng-animate="'animate'" ng-repeat="faq in faqs | filter:search">
+                    <tbody ng-repeat="faq in faqs | filter:search" ng-animate="'fade'">
                         <tr class="main-row" ng-click="toggleDetail($index)">
                             <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
-                            <!-- TODO style table-look. Ikke bordered?-->
-                            <!-- TODO fiks search bar+button?-->
                             <!-- TODO Add masse FAQs til db.-->
                             <!-- TODO Endre header til å reflecte kategorier.-->
-                            <!-- TODO Fikse størrelse på input-boks for skriv spørsmål.-->
                             <td>
-                                <p class="text-muted">{{faq.Heading}}</p>
+                                <p class="text-primary">{{faq.Heading}}</p>
                             </td>
-
+                        </tr>
                         <tr class="extra-row" ng-show="activePosition == $index"><td>{{faq.Description}}</td></tr>
 
 
-                        </tr>
                     </tbody>
                 </table>
                 <button class="btn btn-primary" ng-click="visSendSpm()" ng-show="regKnapp">Send inn spørsmål.</button>
@@ -100,7 +97,7 @@
                 <button class="btn btn-primary" ng-click="goBack()" ng-show="goBack">Gå Tilbake</button>
             </div>
 
-
+            <!--
             <div class="col-sm-4 col-sm-offset-1" ng-show="showAFAQ">
                 <table class="table table-bordered table-condensed">
                     <thead>
@@ -116,6 +113,7 @@
                 </table>
                 <button class="btn btn-primary" ng-click="goBack()" ng-show="goBack">Gå Tilbake</button>
             </div>
+                -->
 
 
             <div class="col-sm-10 col-sm-offset-1" ng-show="sendSpm">
@@ -127,7 +125,7 @@
                     </div>
                     <div class="form-group">
                         <label>Spørsmål:</label>
-                        <input class="form-control" name="sporsmal" ng-model="sporsmal" ng-required="true" ng-pattern="/^[a-zøæåA-ZØÆÅ. \-]{10,}$/" />
+                        <input class="form-control" style="min-height:250px;" name="sporsmal" ng-model="sporsmal" ng-required="true" ng-pattern="/^[a-zøæåA-ZØÆÅ. \-]{10,}$/" />
                         <p class="label label-info" ng-show="skjema.sporsmal.$invalid && skjema.sporsmal.$dirty">Skriv inn en melding på minst 10 tegn.</p>
                     </div>
                     <div class="form-group">
