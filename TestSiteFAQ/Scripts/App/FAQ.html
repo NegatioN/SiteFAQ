@@ -47,24 +47,23 @@
     <div id="main-sidebar" class="sidebar-navbar">
 
         <ul class=" nav">
-            <li>Kategorier </li>
-            <li>En sjanger</li>
-            <li>To sjanger</li>
-            <li>tre sjanger</li>
+            <li><a class="sidebar-brand" href="#">Kategorier</a></li>
+            <li><a class="sidebar-nav" href="#">Data</a></li>
+            <li><a class="sidebar-nav" href="#">Musikk</a></li>
         </ul>
         <ul class="nav">
-            <li>Bruker</li>
-            <li>Logg inn</li>
+            <li><a class="sidebar-brand" href="#">Bruker</a></li>
+            <li><a class="sidebar-nav" href="#">Logg inn</a></li>
         </ul>
     </div>
 
     <div id="main-content">
         <!-- START ANGULAR + AJAX-site compontents-->
 
-        <div class="page-header text-center text-danger"><h2>AngularJS SPA CRUD Web-API Bootstrap</h2></div>
+        <div class="page-header text-center text-danger"><h2>Ofte Spurte Spørsmål</h2></div>
         <div class="row" ng-controller="FAQController">
             <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
-            <div class="col-sm-4 col-sm-offset-1" ng-show="visFaqs">
+            <div class="col-sm-10 col-sm-offset-1" ng-show="visFaqs">
                 <table class="table table-bordered table-condensed">
                     <thead>
                         <tr>
@@ -74,8 +73,9 @@
                     <tbody ng-repeat="faq in faqs">
                         <tr class="main-row" ng-click="toggleDetail($index)">
                             <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
-                            <!--Get images from REST API?-->
-                            <!-- ng-click="showSingleFAQ(faq)" on a's-->
+                            <!-- TODO style table-look. Ikke bordered?-->
+                            <!-- TODO fiks search bar+button?-->
+                            <!-- TODO Add masse FAQs til db.-->
                             <td>
                                 <p class="text-muted">{{faq.Heading}}</p>
                             </td>
@@ -117,7 +117,7 @@
             </div>
 
 
-            <div class="col-sm-4 col-sm-offset-2" ng-show="sendSpm">
+            <div class="col-sm-10 col-sm-offset-1" ng-show="sendSpm">
                 <form name="skjema">
                     <div class="form-group">
                         <label>Epost:</label>
