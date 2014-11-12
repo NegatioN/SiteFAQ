@@ -104,6 +104,10 @@
     <Content Include="Scripts\LIBJS\jquery-2.1.1.js" />
     <Content Include="Scripts\LIBJS\jquery-2.1.1.min.js" />
     <Content Include="Scripts\Content\Site.css" />
+    <Content Include="Scripts\Resources\placeholder.png" />
+    <Content Include="Scripts\Resources\Tast1Tur.png" />
+    <Content Include="Scripts\Resources\Tast1Tur2.png" />
+    <Content Include="Scripts\Resources\Tast1TurLandscape.png" />
     <Content Include="Web.config" />
     <Content Include="Scripts\LIBJS\jquery-2.1.1.min.map" />
   </ItemGroup>

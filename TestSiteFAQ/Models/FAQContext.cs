@@ -23,7 +23,7 @@ namespace TestSiteFAQ.Models
 
         public List<FAQ> getAllFAQs()
         {
-            return Faqs.ToList();
+            return Faqs.Where(a => a.Heading != null).ToList();
         }
 
         public FAQ getFAQ(int id)

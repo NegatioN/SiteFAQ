@@ -10,42 +10,94 @@
     <title></title>
 </head>
 <body>
-    <div class="page-header text-center text-danger"><h2>AngularJS SPA CRUD Web-API Bootstrap</h2></div>
-    <div class="row" ng-controller="FAQController">
-        <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
-        <div class="col-sm-4 col-sm-offset-1" ng-show="visFaqs">
-            <table class="table table-bordered table-condensed">
-                <thead>
-                    <tr>
-                        <th>Ofte Spurte Spørsmål: </th>
-                    </tr>
-                </thead>
-                <tbody ng-repeat="faq in faqs">
-                    <tr class="main-row" ng-click="toggleDetail($index)">
-                        <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
-                        <!--Get images from REST API?-->
-                        <!-- ng-click="showSingleFAQ(faq)" on a's-->
-                        <td>
-                            <p class="text-muted">{{faq.Heading}}</p>
-                        </td>
-
-                    <tr class="extra-row" ng-show="activePosition == $index"><td>{{faq.Description}}</td></tr>
 
 
-                    </tr>
-                </tbody>
-            </table>
-            <button class="btn btn-primary" ng-click="visSendSpm()" ng-show="regKnapp">Send inn spørsmål.</button>
+    <!--  START TAST1TUR-Desgin -->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="~/"><img id="img-logo-landscape" src="../Resources/Tast1TurLandscape.png" alt="Logo" /></a>
+            </div>
+            <div class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li class="nav-search col-lg-12">
+                        <table cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td<input class="form-control"></td>
+                                <td><input type="submit" value="Søk" class="btn btn-large btn-success" /></td>
+
+                            </tr>
+                        </table>
+                    </li>
+                    <li class="nav-item"> Login </li>
+                    <li class="nav-item">  Handlekurv(0) </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <!-- SIDE BAR -->
+
+    <div id="main-sidebar" class="sidebar-navbar">
+
+        <ul class=" nav">
+            <li>Kategorier </li>
+            <li>En sjanger</li>
+            <li>To sjanger</li>
+            <li>tre sjanger</li>
+        </ul>
+        <ul class="nav">
+            <li>Bruker</li>
+            <li>Logg inn</li>
+        </ul>
+    </div>
+
+    <div id="main-content">
+        <!-- START ANGULAR + AJAX-site compontents-->
+
+        <div class="page-header text-center text-danger"><h2>AngularJS SPA CRUD Web-API Bootstrap</h2></div>
+        <div class="row" ng-controller="FAQController">
+            <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
+            <div class="col-sm-4 col-sm-offset-1" ng-show="visFaqs">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Ofte Spurte Spørsmål: </th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="faq in faqs">
+                        <tr class="main-row" ng-click="toggleDetail($index)">
+                            <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
+                            <!--Get images from REST API?-->
+                            <!-- ng-click="showSingleFAQ(faq)" on a's-->
+                            <td>
+                                <p class="text-muted">{{faq.Heading}}</p>
+                            </td>
+
+                        <tr class="extra-row" ng-show="activePosition == $index"><td>{{faq.Description}}</td></tr>
 
 
-        <div class="col-sm-4 col-sm-offset-1" ng-show="showRecipt">
-            <h2>Takk for ditt spørsmål.</h2>
-            <p class ="lead">
-                Svar vil bli sendt til: {{newQuestion.Email}}.</p>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" ng-click="visSendSpm()" ng-show="regKnapp">Send inn spørsmål.</button>
+            </div>
 
-            <button class="btn btn-primary" ng-click="goBack()" ng-show="goBack">Gå Tilbake</button>
-        </div>
+
+            <div class="col-sm-4 col-sm-offset-1" ng-show="showRecipt">
+                <h2>Takk for ditt spørsmål.</h2>
+                <p class="lead">
+                    Svar vil bli sendt til: {{newQuestion.Email}}.
+                </p>
+
+                <button class="btn btn-primary" ng-click="goBack()" ng-show="goBack">Gå Tilbake</button>
+            </div>
 
 
             <div class="col-sm-4 col-sm-offset-1" ng-show="showAFAQ">
@@ -85,5 +137,16 @@
             </div>
 
         </div>
+
+
+        <!-- END ANGULAR + AJAX-site compontents-->
+
+        <hr />
+        <footer>
+            <p>©2014 - Tast-En-Tur</p>
+        </footer>
+    </div>
+
+    <!--  END TAST1TUR DESIGN -->
 </body>
 </html>
