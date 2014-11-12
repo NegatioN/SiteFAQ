@@ -26,17 +26,16 @@
             </div>
             <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li class="nav-search col-lg-12">
+                    <li class="nav-search">
                         <table cellspacing="0" cellpadding="0">
                             <tr>
-                                <td<input class="form-control"></td>
-                                <td><input type="submit" value="Søk" class="btn btn-large btn-success" /></td>
-
+                                <td><input class="form-control" name="search" ng-model="search.Heading" ng- ng-pattern="/^[a-zøæåA-ZØÆÅ.0-9 \-]{1,50}$/" /></td>
+                                <td><button class="btn btn-success" ng-click="searchMethod()">Søk</button></td>
                             </tr>
                         </table>
                     </li>
-                    <li class="nav-item"> Login </li>
-                    <li class="nav-item">  Handlekurv(0) </li>
+                    <li class="nav-item"> <a href="#">Login</a></li>
+                    <li class="nav-item">  <a href="#">Handlekurv(0)</a> </li>
                 </ul>
             </div>
         </div>
@@ -70,12 +69,14 @@
                             <th>Ofte Spurte Spørsmål: </th>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="faq in faqs">
+                    <tbody ng-animate="'animate'" ng-repeat="faq in faqs | filter:search">
                         <tr class="main-row" ng-click="toggleDetail($index)">
                             <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
                             <!-- TODO style table-look. Ikke bordered?-->
                             <!-- TODO fiks search bar+button?-->
                             <!-- TODO Add masse FAQs til db.-->
+                            <!-- TODO Endre header til å reflecte kategorier.-->
+                            <!-- TODO Fikse størrelse på input-boks for skriv spørsmål.-->
                             <td>
                                 <p class="text-muted">{{faq.Heading}}</p>
                             </td>
