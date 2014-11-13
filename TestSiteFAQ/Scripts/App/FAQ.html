@@ -64,34 +64,62 @@
             <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
             <div class="col-sm-10 col-sm-offset-1" ng-show="visFaqs">
                 <!--START Single FAQ-TABLE-->
+                <div class="pull-left col-sm-6">
+                    <div ng-repeat="category in leftcategories">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{{category.Heading}}: </th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="faq in category.Items | filter:search" ng-animate="'animate'">
+                                <tr class="main-row" ng-click="toggleDetail($index, $parent)">
+                                    <td>
+                                        <p class="text-primary">{{faq.Heading}}</p>
+                                    </td>
+                                </tr>
 
-                <div ng-repeat="category in categories" class="col-sm-6">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>{{category.Heading}}: </th>
-                            </tr>
-                        </thead>
-                        <tbody ng-repeat="faq in category.Items | filter:search" ng-animate="'animate'">
-                            <tr class="main-row" ng-click="toggleDetail($index, $parent)">
-                                <!-- TODO Add masse FAQs til db.-->
-                                <td>
-                                    <p class="text-primary">{{faq.Heading}}</p>
-                                </td>
-                            </tr>
-
-                            <tr class="extra-row" ng-show="activePosition == $index && activeParent == $parent">
-                                <td><p ng-repeat="description in regexFilter(faq)">{{description}}</p></td>
-                            </tr>
+                                <tr class="extra-row" ng-show="activePosition == $index && activeParent == $parent">
+                                    <td><p ng-repeat="description in regexFilter(faq)">{{description}}</p></td>
+                                </tr>
 
 
-                        </tbody>
-                    </table>
-                    
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!--END Single FAQ-TABLE-->
                 </div>
-                <!--END Single FAQ-TABLE-->
-                <!--TODO implement LEFT+RIGHT divs that take odd/even number of categories.-->
-                
+
+                <div class="pull-right col-sm-6">
+                    <div ng-repeat="category in rightcategories">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{{category.Heading}}: </th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="faq in category.Items | filter:search" ng-animate="'animate'">
+                                <tr class="main-row" ng-click="toggleDetail($index, $parent)">
+                                    <td>
+                                        <p class="text-primary">{{faq.Heading}}</p>
+                                    </td>
+                                </tr>
+
+                                <tr class="extra-row" ng-show="activePosition == $index && activeParent == $parent && activeParentDiv == $parent.$parent;">
+                                    <td><p ng-repeat="description in regexFilter(faq)">{{description}}</p></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!--END Single FAQ-TABLE-->
+                </div>
+
+
+
             </div>
             <button class="btn btn-primary regbtn" ng-click="visSendSpm()" ng-show="regKnapp">Send inn spørsmål.</button>
 

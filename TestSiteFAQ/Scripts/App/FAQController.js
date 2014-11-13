@@ -24,7 +24,8 @@ App.controller("FAQController", function ($scope, $http) {
         $http.get(url).
           success(function (allFaqs) {
               // $scope.faqs = allFaqs;
-              var allCategories = new Array();
+              var leftCategories = new Array();
+              var rightCategories = new Array();
 
               for (var i = 0; i < faqCategories.length; i++) {
                   console.log(i);
@@ -37,17 +38,21 @@ App.controller("FAQController", function ($scope, $http) {
                   //add all faqs to the category.
                   for (var y = 0; y < allFaqs.length; y++) {
                       var faq = allFaqs[y];
+                      console.log(faq.Heading);
                       //add matching faqs to the category
                       if (faq.Category == Category.Heading) {
                           Category.Items.push(faq);
                       }
                   }
                   console.log(Category.Heading);
-                  allCategories.push(Category);
-               //   $scope.faqs = Category.Items;
+                  if (i < (faqCategories.length / 2))
+                      leftCategories.push(Category);
+                  else
+                      rightCategories.push(Category);
               }
               
-              $scope.categories = allCategories;
+              $scope.leftcategories = leftCategories;
+              $scope.rightcategories = rightCategories;
 
               $scope.laster = false;
           }).
@@ -110,8 +115,14 @@ App.controller("FAQController", function ($scope, $http) {
 
     //toggles descriptions on each FAQ. Also takes into consideration parent of FAQ.
     $scope.toggleDetail = function ($index, $parent) {
+        $scope.activeParentDiv = $parent.$parent;
+        
+        if($parent == $scope.activeParent)
+            $scope.activePosition = $scope.activePosition == $index ? -1 : $index;
+        else
+            $scope.activePosition = $index;
+
         $scope.activeParent = $parent;
-        $scope.activePosition = $scope.activePosition == $index ? -1 : $index;
         console.log("Active pos: " + $scope.activePosition);
         console.log("Active parent: " + $scope.activeParent);
 
