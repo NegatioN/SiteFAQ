@@ -25,24 +25,28 @@ App.controller("FAQController", function ($scope, $http) {
           success(function (allFaqs) {
               // $scope.faqs = allFaqs;
               var allCategories = new Array();
-              for (var i = 0; i<faqCategories.length;i++) {
+
+              for (var i = 0; i < faqCategories.length; i++) {
+                  console.log(i);
+                  //generate a category from the category name-array
                   var Category = {
                       Heading: faqCategories[i],
                       Items: new Array()
                   }
-                  console.log("Heading: " + Category.Heading);
+
                   //add all faqs to the category.
-                  for (var i = 0; i < allFaqs.length; i++) {
-                      var faq = allFaqs[i];
-                      console.log(faq.Heading);
+                  for (var y = 0; y < allFaqs.length; y++) {
+                      var faq = allFaqs[y];
+                      //add matching faqs to the category
                       if (faq.Category == Category.Heading) {
                           Category.Items.push(faq);
-                          console.log("is added to: " + Category.Heading);
                       }
                   }
+                  console.log(Category.Heading);
                   allCategories.push(Category);
-                  $scope.faqs = Category.Items;
+               //   $scope.faqs = Category.Items;
               }
+              
               $scope.categories = allCategories;
 
               $scope.laster = false;
@@ -104,9 +108,13 @@ App.controller("FAQController", function ($scope, $http) {
         getAllFaqs();
     };
 
-    //toggles descriptions on each FAQ
-    $scope.toggleDetail = function ($index) {
+    //toggles descriptions on each FAQ. Also takes into consideration parent of FAQ.
+    $scope.toggleDetail = function ($index, $parent) {
+        $scope.activeParent = $parent;
         $scope.activePosition = $scope.activePosition == $index ? -1 : $index;
+        console.log("Active pos: " + $scope.activePosition);
+        console.log("Active parent: " + $scope.activeParent);
+
     };
 
     //regex used for splitting up descriptions of each FAQ into several paragraphs based on newlines

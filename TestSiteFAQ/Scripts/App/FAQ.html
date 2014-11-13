@@ -62,34 +62,38 @@
         <div class="page-header text-center text-danger"><h2>Ofte Spurte Spørsmål</h2></div>
         <div class="row" ng-controller="FAQController">
             <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
-
             <div class="col-sm-10 col-sm-offset-1" ng-show="visFaqs">
-                <table class="table table-bordered" >
-                    <thead>
-                        <tr>
-                            <th>Ofte Spurte Spørsmål: </th>
-                        </tr>
-                    </thead>
-                    <tbody ng-repeat="faq in faqs | filter:search" ng-animate="'animate'">
-                        <tr class="main-row" ng-click="toggleDetail($index)">
-                            <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
-                            <!-- TODO Add masse FAQs til db.-->
-                            <!-- TODO Endre header til å reflecte kategorier.-->
-                            <td>
+                <!--START Single FAQ-TABLE-->
 
-                                <p class="text-primary">{{faq.Heading}}</p>
-                            </td>
-                        </tr>
+                <div ng-repeat="category in categories" class="col-sm-6">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>{{category.Heading}}: </th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="faq in category.Items | filter:search" ng-animate="'animate'">
+                            <tr class="main-row" ng-click="toggleDetail($index, $parent)">
+                                <!-- TODO Add masse FAQs til db.-->
+                                <td>
+                                    <p class="text-primary">{{faq.Heading}}</p>
+                                </td>
+                            </tr>
 
-                        <tr class="extra-row" ng-show="activePosition == $index">
-                            <td><p ng-repeat="description in regexFilter(faq)">{{description}}</p></td>
-                        </tr>
+                            <tr class="extra-row" ng-show="activePosition == $index && activeParent == $parent">
+                                <td><p ng-repeat="description in regexFilter(faq)">{{description}}</p></td>
+                            </tr>
 
 
-                    </tbody>
-                </table>
-                <button class="btn btn-primary" ng-click="visSendSpm()" ng-show="regKnapp">Send inn spørsmål.</button>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <!--END Single FAQ-TABLE-->
+                <!--TODO implement LEFT+RIGHT divs that take odd/even number of categories.-->
+                
             </div>
+            <button class="btn btn-primary regbtn" ng-click="visSendSpm()" ng-show="regKnapp">Send inn spørsmål.</button>
 
 
             <div class="col-sm-4 col-sm-offset-1" ng-show="showRecipt">
