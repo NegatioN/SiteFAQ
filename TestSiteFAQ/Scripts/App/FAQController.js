@@ -108,4 +108,11 @@ App.controller("FAQController", function ($scope, $http) {
         $scope.activePosition = $scope.activePosition == $index ? -1 : $index;
     };
 
+    //regex used for splitting up descriptions of each FAQ into several paragraphs based on newlines
+    $scope.regexFilter = function (faq) {
+        var feedback = faq.Description.split(/\n/);
+
+        return feedback;
+    };
+
 });

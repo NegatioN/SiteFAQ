@@ -70,16 +70,20 @@
                             <th>Ofte Spurte Spørsmål: </th>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="faq in faqs | filter:search" ng-animate="'fade'">
+                    <tbody ng-repeat="faq in faqs | filter:search" ng-animate="'animate'">
                         <tr class="main-row" ng-click="toggleDetail($index)">
                             <!-- Del opp i seksjoner for Kategorier med divs. if(category) depositFAQ-->
                             <!-- TODO Add masse FAQs til db.-->
                             <!-- TODO Endre header til å reflecte kategorier.-->
                             <td>
+
                                 <p class="text-primary">{{faq.Heading}}</p>
                             </td>
                         </tr>
-                        <tr class="extra-row" ng-show="activePosition == $index"><td>{{faq.Description}}</td></tr>
+
+                        <tr class="extra-row" ng-show="activePosition == $index">
+                            <td><p ng-repeat="description in regexFilter(faq)">{{description}}</p></td>
+                        </tr>
 
 
                     </tbody>
