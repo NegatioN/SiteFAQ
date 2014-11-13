@@ -6,13 +6,13 @@ App.controller("FAQController", function ($scope, $http) {
     //TODO make loading-thing be a spinning load-image?
 
     var url = '/api/FAQ/';
+    //used for sectioning the FAQ's into different tables.
+    var faqCategories = ["Betaling", "Siden", "Om oss", "Handel"];
 
     console.log("FAQ-controller.js found");
 
     function getAllFaqs() {
         //define bool-states for single-page applcation
-        $scope.showAFAQ = false;
-        $scope.registrering = false;
         $scope.visFaqs = true;
         $scope.regKnapp = true;
         $scope.laster = true;
@@ -23,7 +23,28 @@ App.controller("FAQController", function ($scope, $http) {
 
         $http.get(url).
           success(function (allFaqs) {
-              $scope.faqs = allFaqs;
+              // $scope.faqs = allFaqs;
+              var allCategories = new Array();
+              for (var i = 0; i<faqCategories.length;i++) {
+                  var Category = {
+                      Heading: faqCategories[i],
+                      Items: new Array()
+                  }
+                  console.log("Heading: " + Category.Heading);
+                  //add all faqs to the category.
+                  for (var i = 0; i < allFaqs.length; i++) {
+                      var faq = allFaqs[i];
+                      console.log(faq.Heading);
+                      if (faq.Category == Category.Heading) {
+                          Category.Items.push(faq);
+                          console.log("is added to: " + Category.Heading);
+                      }
+                  }
+                  allCategories.push(Category);
+                  $scope.faqs = Category.Items;
+              }
+              $scope.categories = allCategories;
+
               $scope.laster = false;
           }).
           error(function (data, status) {
@@ -34,26 +55,6 @@ App.controller("FAQController", function ($scope, $http) {
     //gets called on Controller-start
     getAllFaqs();
 
-    /*
-    $scope.showSingleFAQ = function(FAQ) {
-        //define bool-states for single-page applcation
-        $scope.visFaqs = false;
-        $scope.registrering = false;
-        $scope.showAFAQ = true;
-
-        console.log("In ShowSingleFAQ");
-
-        var currentFAQ = {
-            Heading: FAQ.Heading,
-            Description: FAQ.Description
-        }
-        $scope.current = currentFAQ;
-
-        console.log($scope.current.Heading);
-        console.log($scope.current.Description);
-
-    };
-    */
 
     $scope.visSendSpm = function () {
         $scope.epost = "";
