@@ -6,6 +6,8 @@ App.controller("FAQController", function ($scope, $http) {
     //TODO make loading-thing be a spinning load-image?
 
     var url = '/api/FAQ/';
+    var qurl = '/api/Question';
+
     //used for sectioning the FAQ's into different tables.
     var faqCategories = ["Betaling", "Siden", "Om oss", "Handel"];
 
@@ -61,6 +63,21 @@ App.controller("FAQController", function ($scope, $http) {
           });
     };
 
+
+    function getAllQuestions() {
+        $scope.laster = true;
+
+        $http.get(qurl).
+          success(function (allQuestions) {
+              $scope.questions = allQuestions;
+
+              $scope.laster = false;
+          }).
+          error(function (data, status) {
+              console.log(status + data);
+          });
+    };
+
     //gets called on Controller-start
     getAllFaqs();
 
@@ -69,12 +86,15 @@ App.controller("FAQController", function ($scope, $http) {
         $scope.epost = "";
         $scope.sporsmal = "";
 
+        getAllQuestions();
+
         // for å unngå at noen av feltene gir "falske" feilmeldinger 
         $scope.skjema.$setPristine();
         $scope.regKnapp = false; // dette er knappen fra listen av kunder til reg-skjema
         $scope.sendSpm = true;
         $scope.visFaqs = false;
         $scope.registrering = true; // dette er knappen for å registrere i form´en.
+
 
         console.log("In showSendSpm");
     };
@@ -92,7 +112,7 @@ App.controller("FAQController", function ($scope, $http) {
         console.log(question.Description);
 
         //HTTP POST
-        $http.post(url, question).
+        $http.post(qurl, question).
          success(function (data) {
              console.log("Lagre kunder OK!")
              $scope.showRecipt = true;
@@ -126,6 +146,11 @@ App.controller("FAQController", function ($scope, $http) {
         console.log("Active pos: " + $scope.activePosition);
         console.log("Active parent: " + $scope.activeParent);
 
+    };
+
+    //toggles descriptions on each Question
+    $scope.toggleDetailQ = function ($index) {
+        $scope.activePositionQ = $scope.activePositionQ == $index ? -1 : $index;
     };
 
     //regex used for splitting up descriptions of each FAQ into several paragraphs based on newlines

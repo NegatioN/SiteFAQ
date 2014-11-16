@@ -148,6 +148,30 @@
                     <div class="form-group">
                         <button class="btn btn-primary" ng-click="sendQuestion()" ng-disabled="skjema.$invalid" ng-show="registrering">Send inn spørsmål</button>
                     </div>
+
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nylig innsendte spørsmål: </th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="question in questions">
+                                <tr class="main-row" ng-click="toggleDetailQ($index)">
+                                    <td>
+                                        <p class="text-primary">{{question.Email}}</p>
+                                    </td>
+                                </tr>
+
+                                <tr class="extra-row" ng-show="activePositionQ == $index ">
+                                    <td><p ng-repeat="description in regexFilter(question)">{{description}}</p></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
                 </form>
                 <button class="btn btn-primary" ng-click="goBack()" ng-show="goBack">Gå Tilbake</button>
             </div>

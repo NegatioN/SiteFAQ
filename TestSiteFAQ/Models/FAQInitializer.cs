@@ -21,6 +21,7 @@ namespace TestSiteFAQ.Models
             catch (Exception e)
             {
                 Seed(db);
+        
             }
         }
         protected override void Seed(FAQContext context)
