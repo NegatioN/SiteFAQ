@@ -38,7 +38,7 @@ namespace TestSiteFAQ.Controllers
         }
 
         // GET: api/Question/5
-        [ResponseType(typeof(PendingFAQ))]
+        [ResponseType(typeof(Question))]
         public IHttpActionResult GetPendingFAQ(int id)
         {
             Question pendingFAQ = db.pendingFaqs.Find(id);
@@ -88,7 +88,7 @@ namespace TestSiteFAQ.Controllers
         }
 
         // POST: api/Question
-        [ResponseType(typeof(PendingFAQ))]
+        [ResponseType(typeof(Question))]
         public IHttpActionResult PostPendingFAQ(Question pendingFAQ)
         {
             if (!ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace TestSiteFAQ.Controllers
         }
 
         // DELETE: api/Question/5
-        [ResponseType(typeof(PendingFAQ))]
+        [ResponseType(typeof(Question))]
         public IHttpActionResult DeletePendingFAQ(int id)
         {
             Question pendingFAQ = db.pendingFaqs.Find(id);

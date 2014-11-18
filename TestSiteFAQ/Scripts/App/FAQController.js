@@ -1,5 +1,5 @@
 ﻿/// <reference path="../LIBJS/jquery-2.1.1.js" />
-var App = angular.module("App", []);
+var App = angular.module("App", ['ngAnimate']);
 
 App.controller("FAQController", function ($scope, $http) {
 
@@ -117,10 +117,10 @@ App.controller("FAQController", function ($scope, $http) {
              console.log("Lagre kunder OK!")
              $scope.showRecipt = true;
              //sett noe laster? som i sending
-        }).
+         }).
          error(function (data, status) {
-            console.log(status + data);
-  });
+             console.log(status + data);
+         });
 
         //change state-bools
         $scope.sendSpm = false;

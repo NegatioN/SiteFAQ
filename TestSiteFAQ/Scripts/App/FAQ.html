@@ -2,6 +2,7 @@
 <html ng-app="App">
 <head>
     <script src="../LIBJS/angular.js"></script>
+    <script src="../LIBJS/angular-animate.js"></script>
     <script src="../LIBJS/jquery-2.1.1.min.js"></script>
     <script src="../LIBJS/bootstrap.min.js"></script>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
@@ -29,8 +30,8 @@
                     <li class="nav-search">
                         <table cellspacing="0" cellpadding="0">
                             <tr>
-                                <td><input class="form-control" name="search" ng-model="search.Heading" ng- ng-pattern="/^[a-zøæåA-ZØÆÅ.0-9 \-]{1,50}$/" /></td>
-                                <td><button class="btn btn-success" ng-click="searchMethod()">Søk</button></td>
+                                <td><input class="form-control" name="search" ng-model="search.Heading" ng-pattern="/^[a-zøæåA-ZØÆÅ.0-9 \-]{1,50}$/" /></td>
+                                <td><button class="btn btn-success">Søk</button></td>
                             </tr>
                         </table>
                     </li>
@@ -72,15 +73,15 @@
                                     <th>{{category.Heading}}: </th>
                                 </tr>
                             </thead>
-                            <tbody ng-repeat="faq in category.Items | filter:search" ng-animate="'animate'">
+                            <tbody class="my-repeat-animation" ng-repeat="faq in category.Items | filter:search">
                                 <tr class="main-row" ng-click="toggleDetail($index, $parent)">
                                     <td>
                                         <p class="text-primary">{{faq.Heading}}</p>
                                     </td>
                                 </tr>
 
-                                <tr class="extra-row" ng-show="activePosition == $index && activeParent == $parent">
-                                    <td><p ng-repeat="description in regexFilter(faq)">{{description}}</p></td>
+                                <tr class="extra-row fadein fadeout" ng-show="activePosition == $index && activeParent == $parent">
+                                    <td><div class="textfield" ng-repeat="description in regexFilter(faq)">{{description}}<br /></div></td>
                                 </tr>
 
 
@@ -99,15 +100,15 @@
                                     <th>{{category.Heading}}: </th>
                                 </tr>
                             </thead>
-                            <tbody ng-repeat="faq in category.Items | filter:search" ng-animate="'animate'">
+                            <tbody class="my-repeat-animation" ng-repeat="faq in category.Items | filter:search" ng-animate="'animate'">
                                 <tr class="main-row" ng-click="toggleDetail($index, $parent)">
                                     <td>
                                         <p class="text-primary">{{faq.Heading}}</p>
                                     </td>
                                 </tr>
 
-                                <tr class="extra-row" ng-show="activePosition == $index && activeParent == $parent && activeParentDiv == $parent.$parent;">
-                                    <td><p ng-repeat="description in regexFilter(faq)">{{description}}</p></td>
+                                <tr class="extra-row fadein fadeout" ng-show="activePosition == $index && activeParent == $parent && activeParentDiv == $parent.$parent;">
+                                    <td><div class="textfield" ng-repeat="description in regexFilter(faq)">{{description}}<br /></div></td>
                                 </tr>
 
 
@@ -142,7 +143,7 @@
                     </div>
                     <div class="form-group">
                         <label>Spørsmål:</label>
-                        <input class="form-control" style="min-height:250px;" name="sporsmal" ng-model="sporsmal" ng-required="true" ng-pattern="/^[a-zøæåA-ZØÆÅ. \-]{10,}$/" />
+                        <textarea class="form-control" rows="4" name="sporsmal" ng-model="sporsmal" ng-required="true" ng-pattern="/^[a-zøæåA-ZØÆÅ. \-]{10,}$/" ></textarea>
                         <p class="label label-info" ng-show="skjema.sporsmal.$invalid && skjema.sporsmal.$dirty">Skriv inn en melding på minst 10 tegn.</p>
                     </div>
                     <div class="form-group">

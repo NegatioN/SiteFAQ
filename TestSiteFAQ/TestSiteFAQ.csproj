@@ -95,6 +95,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\LIBJS\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\LIBJS\angular-animate.js" />
     <Content Include="Scripts\LIBJS\angular.js" />
     <Content Include="Scripts\App\FAQ.html" />
     <Content Include="Scripts\App\FAQController.js" />
