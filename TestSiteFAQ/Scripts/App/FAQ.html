@@ -7,6 +7,7 @@
     <script src="../LIBJS/bootstrap.min.js"></script>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <script src="FAQController.js"></script>
+    <script src="../LIBJS/spin.js"></script>
     <link href="../Content/Site.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
@@ -62,7 +63,7 @@
 
         <div class="page-header text-center text-danger"><h2>Ofte Spurte Spørsmål</h2></div>
         <div class="row" ng-controller="FAQController">
-            <div class="text-center" ng-show="laster"><h3>Laster data, vennligst vent ...</h3></div>
+            <div id="laster" class="text-center" ng-show="laster"></div>
             <div class="col-sm-10 col-sm-offset-1" ng-show="visFaqs">
                 <!--START Single FAQ-TABLE-->
                 <div class="pull-left col-sm-6">
@@ -143,7 +144,7 @@
                     </div>
                     <div class="form-group">
                         <label>Spørsmål:</label>
-                        <textarea class="form-control" rows="4" name="sporsmal" ng-model="sporsmal" ng-required="true" ng-pattern="/^[a-zøæåA-ZØÆÅ. \-]{10,}$/" ></textarea>
+                        <textarea class="form-control" rows="4" name="sporsmal" ng-model="sporsmal" ng-required="true" ng-pattern="/^[a-zøæåA-ZØÆÅ. ?,\-]{10,}$/" ></textarea>
                         <p class="label label-info" ng-show="skjema.sporsmal.$invalid && skjema.sporsmal.$dirty">Skriv inn en melding på minst 10 tegn.</p>
                     </div>
                     <div class="form-group">

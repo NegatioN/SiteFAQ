@@ -153,11 +153,35 @@ App.controller("FAQController", function ($scope, $http) {
         $scope.activePositionQ = $scope.activePositionQ == $index ? -1 : $index;
     };
 
-    //regex used for splitting up descriptions of each FAQ into several paragraphs based on newlines
+    //regex used for splitting up descriptions of each FAQ into several parts based on newlines
     $scope.regexFilter = function (faq) {
         var feedback = faq.Description.split(/\n/);
 
         return feedback;
     };
+
+
+
+        var opts = {
+            lines: 11, // The number of lines to draw
+            length: 20, // The length of each line
+            width: 10, // The line thickness
+            radius: 30, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 42, // The rotation offset
+            direction: 1, // 1: clockwise, -1: counterclockwise
+            color: '#000', // #rgb or #rrggbb or array of colors
+            speed: 1, // Rounds per second
+            trail: 22, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: true, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: '15%', // Top position relative to parent
+            left: '35%' // Left position relative to parent
+        };
+        var target = document.getElementById('laster');
+        var spinner = new Spinner(opts).spin(target);
+
 
 });
