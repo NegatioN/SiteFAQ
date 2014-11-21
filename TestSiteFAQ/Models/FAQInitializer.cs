@@ -56,6 +56,23 @@ namespace TestSiteFAQ.Models
                 Debug.WriteLine(faq.Heading + " added.");
             }
             context.SaveChanges();
+
+            var Questions = new List<Question>{
+                new Question{Email="Ape@Gondor.com", Description="Hva heter det beste tastaturet deres?"},
+                new Question{Email="Sutrekopp@gaming.no", Description="Hvem er geniet bak det her?"},
+                new Question{Email="Good@feedback.com", Description="Ville bare si det her er et fantastisk konsept."},
+                new Question{Email="Olav-thon@thon.no", Description="Hva er estimert leveringstid?"},
+                new Question{Email="lilla@bil.no", Description="Hva er aldersgrensen her?"},
+
+            };
+
+            foreach (var question in Questions)
+            {
+                context.addQuestion(question);
+                Debug.WriteLine(question.Email + " added");
+            }
+            context.SaveChanges();
+
             Debug.WriteLine("Db-init complete");
         }
     }

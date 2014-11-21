@@ -31,7 +31,7 @@
                     <li class="nav-search">
                         <table cellspacing="0" cellpadding="0">
                             <tr>
-                                <td><input class="form-control" name="search" ng-model="search.Heading" ng-pattern="/^[a-zøæåA-ZØÆÅ.0-9 \-]{1,50}$/" /></td>
+                                <td><input class="form-control" /></td>
                                 <td><button class="btn btn-success">Søk</button></td>
                             </tr>
                         </table>
@@ -61,11 +61,15 @@
     <div id="main-content">
         <!-- START ANGULAR + AJAX-site compontents-->
 
-        <div class="page-header text-center text-danger"><h2>Ofte Spurte Spørsmål</h2></div>
+        <div class="page-header text-center text-danger"><h2>Ofte Spurte Spørsmål</h2>
+        
+        </div>
         <div class="row" ng-controller="FAQController">
             <div id="laster" class="text-center" ng-show="laster"></div>
+            <input ng-show="visFaqs" class="form-control filter-form" placeholder="Skriv inn filter-tekst her..." name="search" ng-model="search.Heading" ng-pattern="/^[a-zøæåA-ZØÆÅ.0-9 \-]{1,50}$/" />
             <div class="col-sm-10 col-sm-offset-1" ng-show="visFaqs">
-                <!--START Single FAQ-TABLE-->
+
+                <!--START leftside FAQ-Div-->
                 <div class="pull-left col-sm-6">
                     <div ng-repeat="category in leftcategories">
                         <table class="table table-bordered">
@@ -90,9 +94,9 @@
                         </table>
 
                     </div>
-                    <!--END Single FAQ-TABLE-->
+                    <!--END leftside FAQ-Div-->
                 </div>
-
+                <!--START rightside FAQ-DIV-->
                 <div class="pull-right col-sm-6">
                     <div ng-repeat="category in rightcategories">
                         <table class="table table-bordered">
@@ -117,7 +121,7 @@
                         </table>
 
                     </div>
-                    <!--END Single FAQ-TABLE-->
+                    <!--END rightside FAQ-DIV-->
                 </div>
 
 

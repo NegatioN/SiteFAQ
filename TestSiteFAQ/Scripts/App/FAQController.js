@@ -161,12 +161,12 @@ App.controller("FAQController", function ($scope, $http) {
     };
 
 
-
+    //creates our loading-spinner based on code in spin.js
         var opts = {
             lines: 11, // The number of lines to draw
             length: 20, // The length of each line
             width: 10, // The line thickness
-            radius: 30, // The radius of the inner circle
+            radius: 15, // The radius of the inner circle
             corners: 1, // Corner roundness (0..1)
             rotate: 42, // The rotation offset
             direction: 1, // 1: clockwise, -1: counterclockwise

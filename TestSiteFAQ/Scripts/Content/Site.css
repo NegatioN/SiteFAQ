@@ -286,6 +286,11 @@ th, td {
     padding-bottom: 0.75em;
 }
 
+.filter-form{
+    width:30%;
+    margin:1.5em;
+}
+
 /*animate CSS*/
 
 .fadein,
