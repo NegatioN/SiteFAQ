@@ -1,5 +1,5 @@
 # SiteFAQ
-A simple FAQ-Page made with AJAX, AngularJS, JavaScript and database made with code first in C#.
+A simple FAQ-Page made with AJAX, AngularJS, JavaScript and database made with code first Entity Framework in C#.
 
 The FAQ-part of the page
 
